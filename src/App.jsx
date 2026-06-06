@@ -1,0 +1,29 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+
+import Home from "./pages/Home";
+import Achievements from "./pages/Achievements";
+import Coaching from "./pages/Coaching";
+import Membership from "./pages/Membership";
+import Gallery from "./pages/Gallery";
+import About from "./pages/About";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen bg-[#94A5C8]">
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/coaching" element={<Coaching />} />
+          <Route path="/membership" element={<Membership />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+}
