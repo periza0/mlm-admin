@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Admin from "./pages/Admin";
 import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
@@ -16,6 +17,7 @@ export default function App() {
         <Navbar />
 
         <Routes>
+          <Route path="/admin" element={<Admin />} />
           <Route path="/" element={<Home />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/coaching" element={<Coaching />} />

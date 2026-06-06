@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Achievements() {
   const [flippedCard, setFlippedCard] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const players = [
+  const [players, setPlayers] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/api/ach")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setPlayers(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  const dumplayers = [
     {
-      name: "Nilesh Seth",
+      name: "Nilesh Seth",  
       image: "/players/nilesh.jpg",
       achievements: [
         "International Player",
