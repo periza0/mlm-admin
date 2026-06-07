@@ -27,5 +27,19 @@ router.post("/", async (req, res) => {
     });
   }
 });
+// DELETE player
+router.delete("/:id", async (req, res) => {
+  try {
+    await Achievement.findByIdAndDelete(req.params.id);
+
+    res.json({
+      message: "Player Deleted",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
 
 module.exports = router;

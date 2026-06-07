@@ -1,37 +1,32 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/navigation";
 
-import img1 from "../assets/gallery/1.jpg";
-import img2 from "../assets/gallery/2.jpg";
-import img3 from "../assets/gallery/3.jpg";
-import img4 from "../assets/gallery/4.jpg";
-import img5 from "../assets/gallery/5.jpg";
-import img6 from "../assets/gallery/6.jpg";
-import img7 from "../assets/gallery/7.jpg";
-import img8 from "../assets/gallery/8.jpg";
-import img9 from "../assets/gallery/9.jpg";
-import img10 from "../assets/gallery/10.jpg";
-import img11 from "../assets/gallery/11.jpg";
-import img12 from "../assets/gallery/12.jpg";
+
+
+import { useState, useEffect } from "react";
 
 export default function Gallery() {
-  const images = [
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-    img9,
-    img10,
-    img11,
-    img12,
-  ];
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const fetchImages = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/gallery"
+      );
+
+      const data = await response.json();
+
+      setImages(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="relative min-h-screen px-4 md:px-6 pt-32 pb-16">
@@ -52,15 +47,15 @@ export default function Gallery() {
             }}
             className="rounded-[24px]"
           >
-            {images.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={image}
-                  alt={`Gallery ${index + 1}`}
-                  className="h-[300px] md:h-[600px] w-full object-cover"
-                />
-              </SwiperSlide>
-            ))}
+          {images.map((image) => (
+  <SwiperSlide key={image._id}>
+    <img
+      src={image.image}
+      alt="Gallery"
+      className="h-[300px] md:h-[600px] w-full object-cover"
+    />
+  </SwiperSlide>
+  ))}
           </Swiper>
 
         </div>

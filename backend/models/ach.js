@@ -6,6 +6,11 @@ const achievementSchema = new mongoose.Schema({
     required: true,
   },
 
+  image: {
+    type: String,
+    default: "",
+  },
+
   achievements: {
     type: [String],
     default: [],
