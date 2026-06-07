@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { API_URL } from "../config";
 export default function Achievements() {
   const [flippedCard, setFlippedCard] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -13,109 +13,6 @@ export default function Achievements() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const dumplayers = [
-    {
-      name: "Nilesh Seth",  
-      image: "/players/nilesh.jpg",
-      achievements: [
-        "International Player",
-        "U-19 North Zone Winner",
-        "Best BAI Rank: 15",
-        "SGFI National Winner",
-        "Senior State Champion"
-      ],
-    },
-    {
-      name: "Dhruv Dutta",
-      image: "/players/dhruv.jpg",
-      achievements: [
-        "International Player",
-        "North Zone Champion",
-        "SGFI National Winner",
-      ],
-    },
-
-    {
-      name: "Seema Bhatia",
-      image: "/players/seema.jpg",
-      achievements: [
-        "International Silver Medalist",
-        "Punjab Champion",
-      ],
-    },
-    {
-      name: "Sahib",
-      image: "/players/sahib.jpg",
-      achievements: [
-        "Best BAI Rank: 18",
-        "Multiple-Time State Champion",
-      ],
-    },
-    {
-      name: "Samaira Arora",
-      image: "/players/samaira.jpg",
-      achievements: [
-        "Best BAI Rank: 18",
-        "Multiple-Time State Champion",
-      ],
-    },
-    {
-      name: "Kritagya Arora",
-      image: "/players/kritagya.jpg",
-      achievements: [
-        "Best BAI Rank: 20",
-        "Multiple-Time State Champion",
-      ],
-    },
-    {
-      name: "Akhil Arora",
-      image: "/players/akhil.jpg",
-      achievements: [
-        "Best BAI Rank: 19",
-        "Multiple-Time State Champion",
-      ],
-    },
-    {
-      name: "Aradhya Singhh",
-      image: "/players/aradhya.jpg",
-      achievements: [
-        "Best BAI Rank: 24",
-        "Multiple-Time State Champion",
-      ],
-    },
-    {
-      name: "Kaivalya Sood",
-      image: "/players/kaivalya.jpg",
-      achievements: ["State Runner-Up"],
-    },
-    {
-      name: "Aarav Porwal",
-      image: "/players/aarav.jpg",
-      achievements: ["State Runner-Up"],
-    },
-    {
-      name: "Sonakshi",
-      image: "/players/sonakshi.jpg",
-      achievements: ["State Second Runner-Up"],
-    },
-    {
-      name: "Mrinal Khurana",
-      image: "/players/mrinal.jpg",
-      achievements: ["State Second Runner-Up"],
-    },
-    {
-      name: "Ananya Sharma",
-      image: "/players/ananya.jpg",
-      achievements: ["State Second Runner-Up"],
-    },
-    {
-      name: "Toshan Mehra",
-      image: "/players/toshan.jpg",
-      achievements: ["State Second Runner-Up"],
-    },
-  ];
-
-
   return (
 
     <section className="relative min-h-screen overflow-hidden px-4 md:px-6 pt-32 pb-16">
