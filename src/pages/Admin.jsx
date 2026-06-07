@@ -177,7 +177,7 @@ const [gallery, setGallery] =
     fetchGallery();
   };
   return (
-    <div className="max-w-xl mx-auto px-6 py-30">
+    <div className="max-w-xl mx-auto px-6 pt-45 pb-10">
       <h1>Admin Panel</h1>
 
       <input
