@@ -5,7 +5,7 @@ export default function Achievements() {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/api/ach")
+    fetch(`${API_URL}/api/ach`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

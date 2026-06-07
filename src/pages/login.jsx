@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { API_URL } from "../config";
 export default function Login() {
   const [name, setName] = useState("");
   const [password, setPassword] =
@@ -8,7 +8,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/auth/login",
+        `${API_URL}/api/auth/login`,
         {
           method: "POST",
           headers: {

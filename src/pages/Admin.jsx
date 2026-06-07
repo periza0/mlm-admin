@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { API_URL } from "../config";
 export default function Admin() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -23,7 +23,7 @@ const [gallery, setGallery] =
   const fetchPlayers = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/ach"
+        `${API_URL}/api/ach`
       );
 
       const data = await response.json();
@@ -35,7 +35,7 @@ const [gallery, setGallery] =
   };
   const fetchGallery = async () => {
     const response = await fetch(
-      "http://localhost:8000/api/gallery"
+      `${API_URL}/api/gallery`
     );
   
     const data = await response.json();
@@ -52,7 +52,7 @@ const [gallery, setGallery] =
         formData.append("image", file);
   
         const uploadResponse = await fetch(
-          "http://localhost:8000/api/upload",
+          `${API_URL}/api/upload`,
           {
             method: "POST",
             body: formData,
@@ -66,7 +66,7 @@ const [gallery, setGallery] =
       }
   
       const response = await fetch(
-        "http://localhost:8000/api/ach",
+        `${API_URL}/api/ach`,
         {
           method: "POST",
           headers: {
@@ -108,7 +108,7 @@ const [gallery, setGallery] =
   const deletePlayer = async (id) => {
     try {
       await fetch(
-        `http://localhost:8000/api/ach/${id}`,
+        `${API_URL}/api/ach/${id}`,
         {
           method: "DELETE",
         }
@@ -129,7 +129,7 @@ const [gallery, setGallery] =
         formData.append("image", galleryFile);
   
         const uploadResponse = await fetch(
-          "http://localhost:8000/api/upload",
+          `${API_URL}/api/upload`,
           {
             method: "POST",
             body: formData,
@@ -143,7 +143,7 @@ const [gallery, setGallery] =
       }
   
       await fetch(
-        "http://localhost:8000/api/gallery",
+        `${API_URL}/api/gallery`,
         {
           method: "POST",
           headers: {
@@ -168,7 +168,7 @@ const [gallery, setGallery] =
     id
   ) => {
     await fetch(
-      `http://localhost:8000/api/gallery/${id}`,
+      `${API_URL}/api/gallery/${id}`,
       {
         method: "DELETE",
       }

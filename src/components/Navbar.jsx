@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { FaWhatsapp } from "react-icons/fa";
 export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 z-50 w-full flex justify-center px-4 pt-4 md:pt-6">
@@ -61,6 +61,15 @@ export default function Navbar() {
         >
           About Us
         </Link>
+        <a
+  href="https://wa.me/916239390167"
+  target="_blank"
+  rel="noreferrer"
+  className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full"
+>
+  <FaWhatsapp />
+  WhatsApp
+</a>
       </nav>
     </header>
   );

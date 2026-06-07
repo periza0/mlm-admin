@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
+import { API_URL } from "../config";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -16,9 +17,7 @@ export default function Gallery() {
 
   const fetchImages = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:8000/api/gallery"
-      );
+      const response = await fetch(`${API_URL}/api/gallery`);
 
       const data = await response.json();
 
