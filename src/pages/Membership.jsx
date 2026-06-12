@@ -80,7 +80,7 @@ export default function Membership() {
     <img
       src={districtLogo}
       alt="District"
-      className="h-1 w-auto rounded-xl"
+      className="h-18 w-auto rounded-xl"
     />
   </a>
 
