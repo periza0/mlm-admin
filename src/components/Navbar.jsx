@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
+import districtLogo from "../assets/district1.png";
 export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 z-50 w-full flex justify-center px-4 pt-4 md:pt-6">
@@ -69,6 +70,18 @@ export default function Navbar() {
 >
   <FaWhatsapp />
   WhatsApp
+</a>
+<a
+  href="https://www.district.in/play/mlm-sports-club-mlm-sports-club-amritsar-slots-booking"
+  target="_blank"
+  rel="noreferrer"
+  className="hover:scale-105 transition"
+>
+  <img
+    src={districtLogo}
+    alt="District"
+    className="h-12 w-auto rounded-full"
+  />
 </a>
       </nav>
     </header>
