@@ -1,3 +1,4 @@
+import districtLogo from "../assets/district1.png";
 export default function Membership() {
   return (
 <section className="pt-40 pb-24 bg-white">
@@ -68,19 +69,33 @@ export default function Membership() {
           Extra Person in Membership Plan for a Day
         </p>
       </div>
+      <div className="relative rounded-3xl bg-[#0b3046] p-8 text-white shadow-xl">
+  
+  <a
+    href="https://www.district.in/play/mlm-sports-club-mlm-sports-club-amritsar-slots-booking"
+    target="_blank"
+    rel="noreferrer"
+    className="absolute top-6 right-6 hover:scale-105 transition"
+  >
+    <img
+      src={districtLogo}
+      alt="District"
+      className="h-20 w-auto rounded-xl"
+    />
+  </a>
 
-      <div className="rounded-3xl bg-[#0b3046] p-8 text-white shadow-xl">
-        <h3 className="text-2xl font-semibold">
-          Pay & Play
-        </h3>
-        <p className="mt-3 text-4xl font-bold">
-          ₹500 
-        </p>
-        
-        <p className="mt-2 text-white/80">
-          One court · One hour 
-        </p>
-      </div>
+  <h3 className="text-2xl font-semibold">
+    Pay & Play
+  </h3>
+
+  <p className="mt-3 text-4xl font-bold">
+    ₹500
+  </p>
+
+  <p className="mt-2 text-white/80">
+    One court · One hour
+  </p>
+</div>
     </div>
     <div className="mt-14 rounded-3xl bg-[#0b3046] p-8 text-white text-center shadow-xl">
   <h3 className="text-2xl font-semibold">
