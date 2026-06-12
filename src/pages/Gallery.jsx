@@ -28,7 +28,7 @@ export default function Gallery() {
   };
 
   return (
-    <section className="relative min-h-screen px-4 md:px-6 pt-32 pb-16 bg-white">
+    <section className="relative min-h-screen px-4 md:px-6 pt-40 pb-16 bg-white">
       <div className="mx-auto max-w-6xl">
         <div className="rounded-[32px] border border-white/30 bg-white/15 backdrop-blur-xl p-6 md:p-10 shadow-xl">
 

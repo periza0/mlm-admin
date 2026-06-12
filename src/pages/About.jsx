@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="relative min-h-screen overflow-hidden px-4 md:px-6 pt-32 pb-16 md:py-24">
+    <section className="relative min-h-screen overflow-hidden px-4 md:px-6 pt-40 pb-16 md:py-24">
       {/* Background Circles */}
       <div className="absolute top-20 left-0 h-40 w-40 md:h-64 md:w-64 rounded-full bg-white/20 blur-3xl" />
 

@@ -1,7 +1,7 @@
 import districtLogo from "../assets/district1.png";
 export default function Membership() {
   return (
-<section className="pt-40 pb-24 bg-white">
+<section className="pt-48 pb-24 bg-white">
   <div className="max-w-6xl mx-auto px-6">
     <h2 className="text-4xl md:text-5xl font-bold text-center text-[#0b3046] mb-14">
       Membership Plans

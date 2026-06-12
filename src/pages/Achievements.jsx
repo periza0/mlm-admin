@@ -15,7 +15,7 @@ export default function Achievements() {
   }, []);
   return (
 
-    <section className="relative min-h-screen overflow-hidden px-4 md:px-6 pt-32 pb-16">
+    <section className="relative min-h-screen overflow-hidden px-4 md:px-6 pt-40 pb-16">
       {/* Background Rings */}
       <div className="absolute top-[5%] left-[10%] md:left-[20%] h-[220px] w-[220px] md:h-[420px] md:w-[420px] rounded-full border-[30px] md:border-[55px] border-blue-500/15 blur-[20px]" />
 
