@@ -12,7 +12,7 @@ export default function About() {
           <h1 className="mb-6 md:mb-8 text-center text-3xl md:text-5xl font-bold text-[#0b3046]">
             About Us
           </h1>
-
+          
           <p className="mb-8 text-base md:text-lg leading-relaxed text-[#18344a]">
             <span className="font-semibold">
               MLM (Mohan Lal Memorial) Sports Club
