@@ -1,63 +1,217 @@
-MLM Sports Club Admin Website
-A full-stack sports club website for MLM Sports Club with public pages, an admin dashboard, dynamic achievements, and gallery image management.
-Features
-Responsive React website for home, achievements, gallery, coaching, membership, and about pages
-Admin login with bcrypt password hashing and JWT authentication
-Protected backend create, delete, and upload routes
-Achievement player profiles stored in MongoDB
-Gallery image records stored in MongoDB
-Image uploads handled through Cloudinary
-Swiper-powered public gallery carousel
-Vercel rewrite configuration for React Router
-Tech Stack
-Frontend: React, Vite, Tailwind CSS, React Router, Swiper
-Backend: Node.js, Express.js, MongoDB, Mongoose
-Auth: bcryptjs, JSON Web Tokens
-Uploads: Multer, Cloudinary, multer-storage-cloudinary
-Deployment: Vercel-ready frontend routing
-Project Structure
+# MLM Sports Club Admin Website
+
+A production-ready full-stack sports club management platform for **MLM Sports Club** featuring a responsive public website, secure admin dashboard, dynamic achievements, gallery management, and optimized backend performance.
+
+## Features
+
+### Public Website
+
+* Responsive React frontend
+* Home, About, Coaching, Membership, Gallery, and Achievements pages
+* Swiper-powered gallery carousel
+* Dynamic achievement player profiles
+* Mobile-friendly UI
+
+### Admin Dashboard
+
+* Secure admin authentication using JWT
+* Password hashing with bcrypt
+* Protected CRUD APIs
+* Manage achievements and gallery images
+* Cloudinary image uploads
+
+### Performance & Reliability
+
+* In-memory backend caching for frequently accessed data
+* CDN cache headers for faster content delivery
+* Automatic cache invalidation after updates
+* Graceful fallback to stale cached data during temporary database failures
+* Client-side fallback data to prevent broken pages when APIs are unavailable
+* Fresh-data bypass for admin operations
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* Tailwind CSS
+* React Router
+* Swiper
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+
+### Authentication
+
+* JWT (JSON Web Tokens)
+* bcryptjs
+
+### File Uploads
+
+* Multer
+* Cloudinary
+* multer-storage-cloudinary
+
+### Deployment
+
+* Vercel
+
+---
+
+## Project Structure
+
+```text
 mlm-admin-version/
-  src/
-    components/        # Navbar and route protection
-    pages/             # Public pages, login, and admin dashboard
-    config.js          # API base URL
-  backend/
-    config/            # Cloudinary configuration
-    middleware/        # JWT auth middleware
-    models/            # Mongoose models
-    routes/            # Express API routes
-    server.js          # Backend entry point
-Environment Variables
-Create backend/.env with:
+│
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── config.js
+│
+├── backend/
+│   ├── config/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   │   └── readCache.js
+│   ├── createAdmin.js
+│   └── server.js
+│
+└── public/
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file inside the `backend` directory.
+
+```env
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
+
 CLOUD_NAME=your_cloudinary_cloud_name
 API_KEY=your_cloudinary_api_key
 API_SECRET=your_cloudinary_api_secret
+
 ADMIN_NAME=your_admin_username
 ADMIN_PASSWORD=your_admin_password
+
 PORT=8000
-Run Locally
-Install frontend dependencies:
+```
+
+---
+
+## Running Locally
+
+### Frontend
+
+```bash
 npm install
 npm run dev
-Install backend dependencies:
+```
+
+### Backend
+
+```bash
 cd backend
 npm install
 npm run dev
-Create or update the admin user after adding backend environment variables:
+```
+
+### Create Admin Account
+
+```bash
 cd backend
 node createAdmin.js
-API Overview
-Public routes:
-GET /api/ach - List achievement players
-GET /api/gallery - List gallery images
-POST /api/auth/login - Admin login
-Protected admin routes require Authorization: Bearer <token>:
-POST /api/upload - Upload image to Cloudinary
-POST /api/ach - Add achievement player
-DELETE /api/ach/:id - Delete achievement player
-POST /api/gallery - Add gallery image
-DELETE /api/gallery/:id - Delete gallery image
-Resume Summary
-Built and deployed a full-stack sports club management website using React, Express.js, MongoDB, and Cloudinary, featuring JWT admin authentication, protected content management APIs, dynamic achievement profiles, gallery uploads, and responsive public pages for coaching, membership, bookings, and club information.
+```
+
+---
+
+## API Endpoints
+
+### Public APIs
+
+```http
+GET /api/ach
+```
+
+Returns all achievement players.
+
+```http
+GET /api/gallery
+```
+
+Returns all gallery images.
+
+```http
+POST /api/auth/login
+```
+
+Authenticates the admin user.
+
+---
+
+### Protected APIs
+
+Require:
+
+```http
+Authorization: Bearer <JWT_TOKEN>
+```
+
+```http
+POST /api/upload
+```
+
+Upload images to Cloudinary.
+
+```http
+POST /api/ach
+```
+
+Create a new achievement player.
+
+```http
+DELETE /api/ach/:id
+```
+
+Delete an achievement player.
+
+```http
+POST /api/gallery
+```
+
+Add a gallery image.
+
+```http
+DELETE /api/gallery/:id
+```
+
+Delete a gallery image.
+
+---
+
+## Performance Optimizations
+
+* Backend in-memory caching for read-heavy endpoints
+* Cache-Control headers for CDN/browser caching
+* Automatic cache invalidation after create/delete operations
+* Stale cache fallback if MongoDB is temporarily unavailable
+* Local client-side fallback to improve resilience during API failures
+* Admin requests bypass cache to always display fresh data
+
+---
+
+## Resume Summary
+
+Built and deployed a full-stack sports club management platform using **React, Express.js, MongoDB, Cloudinary, and JWT authentication**, featuring secure admin content management, optimized REST APIs, dynamic achievement and gallery modules, backend caching, cache invalidation, and resilient client/server data handling for improved performance and reliability.
+
