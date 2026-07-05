@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { API_URL } from "../config";
+import { fetchJsonWithFallback } from "../lib/apiCache";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -10,22 +11,49 @@ import { useState, useEffect } from "react";
 
 export default function Gallery() {
   const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
 
-  useEffect(() => {
-    fetchImages();
-  }, []);
-
-  const fetchImages = async () => {
+  async function fetchImages(active = true) {
     try {
-      const response = await fetch(`${API_URL}/api/gallery`);
+      const { data, fromCache } =
+        await fetchJsonWithFallback(
+          `${API_URL}/api/gallery`,
+          "mlm:gallery"
+        );
 
-      const data = await response.json();
+      if (!active) {
+        return;
+      }
 
-      setImages(data);
+      setImages(Array.isArray(data) ? data : []);
+      setLoadError(
+        fromCache
+          ? "Showing saved gallery photos while the live data catches up."
+          : ""
+      );
     } catch (error) {
       console.log(error);
+
+      if (active) {
+        setLoadError("Gallery is temporarily unavailable.");
+      }
+    } finally {
+      if (active) {
+        setIsLoading(false);
+      }
     }
-  };
+  }
+
+  useEffect(() => {
+    let active = true;
+
+    fetchImages(active);
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <section className="relative min-h-screen px-4 md:px-6 pt-40 pb-16 bg-white">
@@ -35,6 +63,16 @@ export default function Gallery() {
           <h1 className="mb-8 text-center text-3xl md:text-5xl font-bold text-[#0b3046]">
             Gallery
           </h1>
+          {isLoading && (
+            <p className="mb-8 text-center text-slate-600">
+              Loading gallery...
+            </p>
+          )}
+          {loadError && (
+            <p className="mb-8 text-center text-slate-600">
+              {loadError}
+            </p>
+          )}
 
           <Swiper
             modules={[Navigation, Autoplay]}

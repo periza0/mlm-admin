@@ -1,17 +1,47 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "../config";
+import { fetchJsonWithFallback } from "../lib/apiCache";
 export default function Achievements() {
   const [flippedCard, setFlippedCard] = useState(null);
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [players, setPlayers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+
   useEffect(() => {
-    fetch(`${API_URL}/api/ach`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setPlayers(data);
+    let active = true;
+
+    fetchJsonWithFallback(
+      `${API_URL}/api/ach`,
+      "mlm:achievements"
+    )
+      .then(({ data, fromCache }) => {
+        if (!active) {
+          return;
+        }
+
+        setPlayers(Array.isArray(data) ? data : []);
+        setLoadError(
+          fromCache
+            ? "Showing saved achievements while the live data catches up."
+            : ""
+        );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+
+        if (active) {
+          setLoadError("Achievements are temporarily unavailable.");
+        }
+      })
+      .finally(() => {
+        if (active) {
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
   }, []);
   return (
 
@@ -34,10 +64,20 @@ export default function Achievements() {
           <h1 className="mb-10 text-center text-3xl md:text-5xl font-bold text-[#0b3046]">
             Achievements
           </h1>
+          {isLoading && (
+            <p className="mb-8 text-center text-slate-600">
+              Loading achievements...
+            </p>
+          )}
+          {loadError && (
+            <p className="mb-8 text-center text-slate-600">
+              {loadError}
+            </p>
+          )}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
   {players.map((player, index) => (
     <div
-      key={player.name}
+      key={player._id || player.name}
       onClick={() =>
         setFlippedCard(flippedCard === index ? null : index)
       }
@@ -61,7 +101,7 @@ export default function Achievements() {
           </h3>
 
           <ul className="space-y-2 text-slate-700">
-            {player.achievements.map((achievement) => (
+            {(player.achievements || []).map((achievement) => (
               <li key={achievement}>
                 • {achievement}
               </li>

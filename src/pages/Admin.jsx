@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "../config";
+import { freshUrl } from "../lib/apiCache";
 export default function Admin() {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
   const [achievement1, setAchievement1] = useState("");
   const [achievement2, setAchievement2] = useState("");
@@ -15,15 +15,13 @@ const [gallery, setGallery] =
 
   const [players, setPlayers] = useState([]);
 
-  useEffect(() => {
-    fetchPlayers();
-    fetchGallery();
-  }, []);
-
-  const fetchPlayers = async () => {
+  async function fetchPlayers() {
     try {
       const response = await fetch(
-        `${API_URL}/api/ach`
+        freshUrl(`${API_URL}/api/ach`),
+        {
+          cache: "no-store",
+        }
       );
 
       const data = await response.json();
@@ -32,16 +30,30 @@ const [gallery, setGallery] =
     } catch (error) {
       console.log(error);
     }
-  };
-  const fetchGallery = async () => {
-    const response = await fetch(
-      `${API_URL}/api/gallery`
-    );
-  
-    const data = await response.json();
-  
-    setGallery(data);
-  };
+  }
+
+  async function fetchGallery() {
+    try {
+      const response = await fetch(
+        freshUrl(`${API_URL}/api/gallery`),
+        {
+          cache: "no-store",
+        }
+      );
+    
+      const data = await response.json();
+    
+      setGallery(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchPlayers();
+    fetchGallery();
+  }, []);
+
   const addPlayer = async () => {
     try {
       let imageUrl = "";

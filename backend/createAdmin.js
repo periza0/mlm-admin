@@ -1,12 +1,12 @@
-const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
+const connectDB = require("./config/db");
 const Admin = require("./models/Admin");
 
-mongoose.connect(process.env.MONGO_URI);
-
 async function createAdmin() {
+  await connectDB();
+
   const hashedPassword =
     await bcrypt.hash("mlm12345", 10);
 
