@@ -105,6 +105,7 @@ API_KEY=your_cloudinary_api_key
 API_SECRET=your_cloudinary_api_secret
 
 ADMIN_NAME=your_admin_username
+# Use a strong, unique password. This value is hashed before it is saved.
 ADMIN_PASSWORD=your_admin_password
 
 PORT=8000
@@ -216,4 +217,3 @@ Delete a gallery image.
 ## Resume Summary
 
 Built and deployed a full-stack sports club management platform using **React, Express.js, MongoDB, Cloudinary, and JWT authentication**, featuring secure admin content management, optimized REST APIs, dynamic achievement and gallery modules, backend caching, cache invalidation, and resilient client/server data handling for improved performance and reliability.
-
