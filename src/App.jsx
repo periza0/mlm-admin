@@ -9,6 +9,7 @@ import Membership from "./pages/Membership";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Protect from "./components/protect";
+import Chatbot from "./components/Chatbot";
 export default function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/admin" element={<Protect><Admin /></Protect>}/>
  </Routes>
+      <Chatbot />
       </div>
     </BrowserRouter>
   );
